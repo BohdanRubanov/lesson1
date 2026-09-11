@@ -16,6 +16,11 @@ app.get('/hello', (req,res) => {
     })
 })
 
+app.get('/ivanpage', (req, res) => {
+    res.status(200).json({
+        message:"hi"
+    })
+})
 app.get('/howAreYou', (req,res) => {
     res.status(200).json({
         howAreYou:"I'm fine, thank you!"

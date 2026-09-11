@@ -10,9 +10,16 @@ app.get('/name', (req,res) => {
         name:"Ivan"
     })
 })
+
 app.get('/hello', (req,res) => {
     res.status(200).json({
         hello:"hello"
+    })
+})
+
+app.get('/polina', (req,res) => {
+    res.status(200).json({
+       name:"Polina"
     })
 })
 

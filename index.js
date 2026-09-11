@@ -10,6 +10,11 @@ app.get('/name', (req,res) => {
         name:"Ivan"
     })
 })
+app.get('/hello', (req,res) => {
+    res.status(200).json({
+        hello:"hello"
+    })
+})
 
 app.listen(PORT, HOST, () => {
     console.log(`http://${HOST}:${PORT}`)

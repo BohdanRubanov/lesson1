@@ -16,6 +16,12 @@ app.get('/hello', (req,res) => {
     })
 })
 
+app.get('/ivanpage', (req, res) => {
+    res.status(200).json({
+        message:"how are you doing?"
+    })
+})
+
 app.listen(PORT, HOST, () => {
     console.log(`http://${HOST}:${PORT}`)
 })

@@ -3,16 +3,11 @@ import express from 'express'
 const app = express()
 
 const HOST = '127.0.0.1'
-const PORT = 3001
+const PORT = 8000
 
-app.get('/name', (req,res) => {
+app.get('/George', (req,res) => {
     res.status(200).json({
-        name:"Ivan"
-    })
-})
-app.get('/hello', (req,res) => {
-    res.status(200).json({
-        hello:"hello"
+        name:"George"
     })
 })
 

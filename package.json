@@ -12,5 +12,13 @@
   "description": "",
   "dependencies": {
     "express": "^5.2.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BohdanRubanov/lesson1.git"
+  },
+  "bugs": {
+    "url": "https://github.com/BohdanRubanov/lesson1/issues"
+  },
+  "homepage": "https://github.com/BohdanRubanov/lesson1#readme"
 }

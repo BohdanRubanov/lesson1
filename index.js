@@ -15,6 +15,20 @@ app.get('/hello', (req,res) => {
         hello:"hello"
     })
 })
+app.get('/health', (req,res) => {
+    res.status(200).json({
+        status: "ok"
+    })
+})
+app.get('/stats', (req,res) => {
+    const timestamp = new Date().toISOString();
+
+    res.status(200).json({
+        uptime: process.uptime(),
+        nodeVersion: process.version,
+        timestamp: timestamp
+    })
+})
 
 app.listen(PORT, HOST, () => {
     console.log(`http://${HOST}:${PORT}`)

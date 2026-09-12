@@ -34,18 +34,18 @@ app.get('/helloworld', (req,res) => {
 })
 
 app.get('/health', (req, res) => {
-  res.json({
-    status: 'ok'
-  });
-});
+    res.json({
+      status: 'ok'
+    });
+  });  
 
 app.get('/stats', (req, res) => {
-  res.json({
-    uptime: process.uptime(),
-    nodeVersion: process.version,
-    timestamp: new Date().toISOString()
+    res.json({
+      uptime: process.uptime(),
+      nodeVersion: process.version,
+      timestamp: new Date().toISOString()
+    });
   });
-});
 
 app.listen(PORT, HOST, () => {
     console.log(`http://${HOST}:${PORT}`)

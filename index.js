@@ -5,48 +5,29 @@ const app = express()
 const HOST = '127.0.0.1'
 const PORT = 3001
 
-app.get('/name', (req,res) => {
-    res.status(200).json({
-        name:"Ivan"
-    })
-})
-app.get('/hello', (req,res) => {
-    res.status(200).json({
-        hello:"hello"
-    })
-})
+const products = [
+    {id:1, name:'laptop', price:40000, category:'electronics'},
+    {id:2, name:'phone_charger', price:1500, category:'electronics'},
+    {id:3, name:'closet', price:14000, category:'furniture'},
+    {id:4, name:'chair', price:1000, category:'furniture'},
+    {id:5, name:'desk_lamp', price:800, category:'furniture'}
+]
 
-app.get('/ivanpage', (req, res) => {
-    res.status(200).json({
-        message:"hi"
-    })
-})
-app.get('/howAreYou', (req,res) => {
-    res.status(200).json({
-        howAreYou:"I'm fine, thank you!"
-    })
-})
+app.get('/products', (req, res) => {
+    const {take, category} = req.query
 
-app.get('/helloworld', (req,res) => {
-    res.status(200).json({
-        hello:"world"
-    })
-})
+    let filtered_products = products
 
-app.get('/health', (req, res) => {
-  res.json({
-    status: 'ok'
-  });
-});
+    if (category) {
+        filtered_products = filtered_products.filter(product => product.category === category)
+      }
+    if (take) {
+        filtered_products = filtered_products.slice(0, Number(take))
+    }
+    res.json(filtered_products)
 
-app.get('/stats', (req, res) => {
-  res.json({
-    uptime: process.uptime(),
-    nodeVersion: process.version,
-    timestamp: new Date().toISOString()
-  });
 });
 
 app.listen(PORT, HOST, () => {
-    console.log(`http://${HOST}:${PORT}`)
-})
+    console.log(`http://${HOST}:${PORT}`);
+});

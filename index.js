@@ -4,29 +4,35 @@ const app = express()
 
 const HOST = '127.0.0.1'
 const PORT = 3001
+app.use(express.json())
 
-const products = [
-    {id:1, name:'laptop', price:40000, category:'electronics'},
-    {id:2, name:'phone_charger', price:1500, category:'electronics'},
-    {id:3, name:'closet', price:14000, category:'furniture'},
-    {id:4, name:'chair', price:1000, category:'furniture'},
-    {id:5, name:'desk_lamp', price:800, category:'furniture'}
-]
+app.post('/products', (req,res) => {
 
-app.get('/products', (req, res) => {
-    const {take, category} = req.query
-
-    let filtered_products = products
-
-    if (category) {
-        filtered_products = filtered_products.filter(product => product.category === category)
-      }
-    if (take) {
-        filtered_products = filtered_products.slice(0, Number(take))
+    if (req.query.fail !== undefined){
+        return addProduct(req, res)
     }
-    res.json(filtered_products)
+   
+    const {name, price, category, image = ''} = req.body;
 
+    if (typeof name !== 'string' || typeof category !== 'string' || typeof price !== 'number'){
+        return res.status(422).json()
+    }
+    if (name.length < 1 || price < 1 || category.length < 1){
+        return res.status(422).json()
+    }
+
+    return res.status(201).json()
 });
+
+async function addProduct(req, res) {
+    const fail = req.query.fail;
+    if (fail === 'true') {
+        return res.status(500).json();
+    }
+    if (fail === 'false') {
+        res.json('Новий продукт є у масиві.')
+    }
+}
 
 app.listen(PORT, HOST, () => {
     console.log(`http://${HOST}:${PORT}`);
